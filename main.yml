@@ -23,7 +23,8 @@
       - python-pip
       - python-apt
       - dos2unix
-
+      - git
+      
   - name: Configure Users
     action: user name=evan4498 state=present groups=sudo shell=/bin/bash createhome=yes 
 
