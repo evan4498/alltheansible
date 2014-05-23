@@ -1,14 +1,14 @@
 ---
-- name: Build a Cloud Server
+- name: Ensure servers exist
   hosts: localhost
   connection: local
   gather_facts: False
   tasks:
-    - name: Server build request
+    - name: Build server if needed
       local_action:
         module: rax
         credentials: ~/.rackspace_cloud_credentials
-        name: ansibleweb
+        name: "{{ server_name }}"
         flavor: performance1-1
         image: ubuntu-1404-lts-trusty-tahr
         region: IAD
@@ -19,6 +19,5 @@
           - private
           - public
         meta:
-          group: {{ app_group }}
+          group: "{{ app_group }}"
       register: rax
-   include: base.yml
