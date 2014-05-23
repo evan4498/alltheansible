@@ -1,0 +1,24 @@
+---
+- name: Build a Cloud Server
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Server build request
+      local_action:
+        module: rax
+        credentials: ~/.rackspace_cloud_credentials
+        name: ansibleweb
+        flavor: performance1-1
+        image: ubuntu-1404-lts-trusty-tahr
+        region: IAD
+        key_name: EvanPublicIAD
+        wait: yes
+        state: present
+        networks:
+          - private
+          - public
+        meta:
+          group: {{ app_group }}
+      register: rax
+   include: base.yml
