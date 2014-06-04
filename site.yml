@@ -7,7 +7,7 @@
     - name: Build server if needed
       local_action:
         module: rax
-        credentials: ~/.rackspace_cloud_credentials
+        credentials: ./.rackspace_cloud_credentials
         name: "{{ server_name }}"
         flavor: performance1-1
         image: ubuntu-1404-lts-trusty-tahr
