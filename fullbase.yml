@@ -1,11 +1,11 @@
 ---
 # This playbook deploys the whole application stack in this site.  
 
-#- name: apply common configuration to all nodes
-#  hosts: all 
-#  user: root
+- name: apply common configuration to all nodes
+  hosts: all 
+  user: root
 
-#  tasks:
+  tasks:
   - name: Install Apt
     raw: apt-get update -y && apt-get install -y python-apt
 
@@ -50,3 +50,7 @@
  
   - name: Enable ufw
     action: shell echo 'y' | ufw enable
+
+  handlers:
+  - name: restart ssh
+    action: service name=ssh state=restarted

@@ -21,3 +21,8 @@
         meta:
           group: "{{ app_group }}"
       register: rax
+    - include: base.yml
+
+  handlers:
+  - name: restart ssh
+    action: service name=ssh state=restarted
