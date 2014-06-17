@@ -8,7 +8,7 @@
       local_action:
         module: rax
         credentials: ./.rackspace_cloud_credentials
-        name: "{{ server_name }}"
+        name: grouptest 
         flavor: performance1-1
         image: ubuntu-1404-lts-trusty-tahr
         region: IAD
@@ -19,10 +19,14 @@
           - private
           - public
         meta:
-          group: "{{ app_group }}"
+          group: dev
+          groups:
+            - web
+            - wordpress
+            
       register: rax
-    - include: base.yml
+#    - include: base.yml
 
-  handlers:
-  - name: restart ssh
-    action: service name=ssh state=restarted
+#  handlers:
+#  - name: restart ssh
+#    action: service name=ssh state=restarted
